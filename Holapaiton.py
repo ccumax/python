@@ -5,6 +5,10 @@ print("")
 print("Hola.... Bienvenido a la Calculadora Institutana")
 print("")
 
+num1 = 0
+num2 = 0
+num3 = 0
+
 def suma (a,b):
     return a + b
 
