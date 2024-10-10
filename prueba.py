@@ -19,3 +19,66 @@
 # - Sumar cantidad de películas de acción y almacenarlas en un nuevo ARRAY
 
 # Se debe implementar ARRAY o ARREGLO
+
+def limp_pantalla ():
+    from os import system 
+    system("cls")
+    return limp_pantalla
+
+
+def validar_genero(genero):
+    generos_validos = ['Acción', 'Terror', 'Comedia', 'Romance', 'Infantil']
+    return genero in generos_validos
+
+def validar_año(año):
+    return 2000 <= año <= 2024
+
+def main():
+    peliculas = []
+
+limp_pantalla()
+
+nombre = []
+protagonista = []
+antagonista = []
+director = []
+
+print("*** Bienvenido a Insuco Streaming ***")
+print("")
+print("")
+N = int(input("Ingrese la cantidad de películas que quiere ingresar..."))
+limp_pantalla()
+print(f">>> SE INGRESARÁN {N} PELÍCULAS <<<")
+for i in range (N):
+    print(f"** Película {i} **")
+
+    nombre[i]=input(f"Ingrese el nombre de la película {i+1}...")
+    protagonista[i]=input(f"Ingrese el nombre del protagonista de {nombre[i]}")
+    antagonista[i]=input(f"Ingrese el nombre del antagonista de {nombre[i]}")
+    director[i]=input(f"Ingrese el nombre del director de {nombre[i]}")
+
+    while True:
+            genero = input("Género (Acción, Terror, Comedia, Romance, Infantil): ")
+            if validar_genero(genero):
+                break
+            else:
+                print("Género inválido. Inténtelo de nuevo.")
+    
+    while True:
+            año = int(input("Año de estreno (2000-2024): "))
+            if validar_año(año):
+                break
+            else:
+                print("Año inválido. Inténtelo de nuevo.")
+
+    vistas = int(input("Cantidad de visualizaciones: "))
+
+    peliculas.append({
+            'nombre': nombre,
+            'protagonista': protagonista,
+            'antagonista': antagonista,
+            'director': director,
+            'genero': genero,
+            'año': año,
+            'vistas': vistas
+        })
