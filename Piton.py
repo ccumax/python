@@ -55,9 +55,17 @@ def validar_dia(i):
             print("Tiene que ingresar números enteros")
             print("")
 
+
+def control_presupuesto(a, b):
+    pres_actual = 0
+    pres_actual = a - b
+    return pres_actual
+
+
 def calcular_prom(total_sueldo, cant_artist):
     return total_sueldo / cant_artist if cant_artist > 0 else 0
 
+pres = 1700000
 max_sueldo = 0
 total_sueldo = 0
 max_sueldo_nom = ""
@@ -73,8 +81,12 @@ for i in range(cant_artist):
     nomcompleto_artista = validar_nombre(i)
     apodo_artista = input(f"Ingrese el apodo del artista {i + 1}... ")
     limpiar_pantalla()
+    print(f"Presupuesto actual: $ {pres}")
+    print("")
     sueldo_artista = validar_sueldo(i)
     dia_artista = validar_dia(i)
+    p = control_presupuesto(pres,sueldo_artista)
+    pres = p
 
     total_sueldo += sueldo_artista
 
@@ -89,8 +101,9 @@ for i in range(cant_artist):
     Sueldo: {sueldo_artista}
     """)
     input("Presione ENTER para continuar...")
+    limpiar_pantalla()
 
 prom_sueldo = calcular_prom(total_sueldo, cant_artist)
 
 print(f"El promedio de sueldos en la Pampilla de Coquimbo es de $ {prom_sueldo:.2f} pesos.")
-print(f"El artista más pagado es {max_sueldo_nom} con un sueldo de ${max_sueldo} pesos.")
+print(f"El artista más pagado es {max_sueldo_nom} con un sueldo de $ {max_sueldo} pesos.")
