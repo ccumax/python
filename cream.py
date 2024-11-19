@@ -81,7 +81,7 @@ def ciclo_menu():
                     print(">>> Ingrese 0 para volver a la seccion 'Verduras y Frutas' <<<\n")
 
                     print("$ 1.000 x Kg")
-                    cant=input("Ingrese cuantos Kg desea...")
+                    cant=int(input("Ingrese cuantos Kg desea..."))
                     limpiar_pantalla()
                     if cant>0:
                         print(f"{cant} 'Papa(s)' ha sido añadida(s) al carrito")
@@ -397,13 +397,13 @@ limpiar_pantalla()
 pago=float(input("Ingrese limite de pago del cliente: "))
 limpiar_pantalla()
 pago=val_pago()
-carrito_de_compra = ciclo_menu()
+ciclo_menu()
 limpiar_pantalla()
 print("")
 
 #mostrar datos
 
-nombre_completo_cliente = calcular_nombre_completo()
+nombre_completo_cliente = calcular_nombre_completo(client_name, client_lastname)
 
 print(f"Nombre del cliente: {nombre_completo_cliente}")
 print(f"Total a pagar: {carrito_de_compra}")
