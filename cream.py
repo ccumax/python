@@ -1,43 +1,8 @@
-#Realizar un programa que solucione lo siguiente:
-#problematica VENTA DE FRUTAS Y VERDURAS
-#Ingrese por teclado la cantidad de ventas a realizar
-
-#cada venta debe registrar
-#Nombre del vendedor
-#Apellido del vendedor
-#Nombre del cliente
-#Apellido del cliente
-#Cantidad que va a comprar el usuario (en kgs)
-#fruta quue va a comprar el usuario
-#Precio de la fruta o verdura (en pesos chilenos, por kilo)
-#Con cuanto pago el cliente
-#Funcion: calcular total a pagar 
-#funcion: calcular vuelto
-#funcion: calcular nombre completo
-def val_pago():
-    while True:
-        pago=float(input("Ingrese limite de pago del cliente: "))
-        limpiar_pantalla()
-        try:
-            if pago>0:
-                return pago
-            else:
-                print("Ingrese pago valido")
-        except ValueError:
-            print("Ingrese cantidad en numeros enteros")        
+# Programa de Pedidos para un supermercado
+    
 def limpiar_pantalla():
     from os import system
     system("cls")
-
-def calcular_vuelto(pago, total):
-    if total<pago:
-        result=pago-total    
-        return result
-    elif pago-total==0:
-        result="0"
-        return result
-    else:
-        print("Dinero insuficiente")
     
 def calcular_nombre_completo(nombre, apellido):
     return f"{nombre} {apellido}"
@@ -45,12 +10,13 @@ def calcular_nombre_completo(nombre, apellido):
 limpiar_pantalla()
 
 def ciclo_menu():
-    print("*** Bienvenido a Cho TasTrago Ya ***")
+    print("*** Bienvenido a Pedidos Nyaa!! ***")
     print("")
     print("")
     a = input("Presione ENTER para continuar...")
     limpiar_pantalla()
     carrito_de_compra = 0
+    productos_comprados=[]
     while True:
         print("""¿A que sección quiere ir? (Ingrese el número de la sección)
               
@@ -69,345 +35,354 @@ def ciclo_menu():
         #Secciones 
         if seccion == 1:
             while True:
-                print(f"""*** SECCION DE VERDURAS Y FRUTAS ***
-Ingrese el numero de lo que desea agregar al carrito
+                print(f"""*** SECCIÓN DE VERDURAS Y FRUTAS ***
                       
-1). Papas (Kg)
-2). Tomate (Kg)
-3). Frutilla (Kg)
-4). Uva (Kg)
+Ingrese el número de lo que desea agregar al carrito
+                      
+1). Papas (Kg) - $1000 x Kg
+2). Tomate (Kg) - $1000 x Kg
+3). Frutilla (Kg) - $2500 x Kg
+4). Uva (Kg) - $6000 x Kg
 5). Salir.
-                      
-                                    Carrito de compra: $ {carrito_de_compra}""")
-                producto=int(input(""))
-                if producto==1:
-                    limpiar_pantalla()
-                    
-                    print(">>> Ingrese 0 para volver a la seccion 'Verduras y Frutas' <<<\n")
-
+                                      
+                         Carrito de compra: $ {carrito_de_compra}""")
+                producto = int(input(""))
+                if producto == 1:
+                    print(">>> Ingrese 0 para volver a la sección 'Verduras y Frutas' <<<\n")
                     print("$ 1.000 x Kg")
-                    cant=int(input("Ingrese cuantos Kg desea..."))
+                    cant = int(input("Ingrese cuántos Kg desea: "))
                     limpiar_pantalla()
-                    if cant>0:
-                        print(f"{cant} 'Papa(s)' ha sido añadida(s) al carrito")
-                        print("")
-                        multiplicacion = cant * 1000       
-                        carrito_de_compra += multiplicacion   
-                    else:
-                        print("La cantidad no es válida, no se agregó ningún producto")
-                        print("")
-                        a = input("Presione ENTER para continuar...")
-                        limpiar_pantalla()
-                elif producto==2:
-                    limpiar_pantalla()
-                    
-                    print(">>> Ingrese 0 para volver a la seccion 'Verduras y Frutas' <<<\n")
+                    if cant > 0:
+                        total_producto = cant * 1000
+                        carrito_de_compra += total_producto
+                        productos_comprados.append((f"Papas (Kg)", cant, total_producto))
+                        print(f"{cant} Kg de 'Papas' añadidas al carrito")
+                elif producto == 2:
+                    print(">>> Ingrese 0 para volver a la sección 'Verduras y Frutas' <<<\n")
                     print("$ 1.000 x Kg")
-                    cant=int(input("Ingrese cuantos Kg desea..."))
+                    cant = int(input("Ingrese cuántos Kg desea: "))
                     limpiar_pantalla()
-                    if cant>0:
-                        print(f"{cant} 'Tomate' añadido(s) al carrito")
-                        print("")
-                        multiplicacion = cant * 1000 
-                        carrito_de_compra += multiplicacion         
-                    else:
-                        print("La cantidad no es válida, por no se agregó ningún producto")
-                        print("")
-                        a = input("Presione ENTER para continuar...")       
-                elif producto==3:
-                    limpiar_pantalla()
-                    
-                    print(">>> Ingrese 0 para volver a la seccion 'Verduras y Frutas' <<<\n")
+                    if cant > 0:
+                        total_producto = cant * 1000
+                        carrito_de_compra += total_producto
+                        productos_comprados.append((f"Tomate (Kg)", cant, total_producto))
+                        print(f"{cant} Kg de 'Tomate' añadidos al carrito")
+                elif producto == 3:
+                    print(">>> Ingrese 0 para volver a la sección 'Verduras y Frutas' <<<\n")
                     print("$ 2.500 x Kg")
-                    cant=int(input("Ingrese cuantos Kg desea..."))
+                    cant = int(input("Ingrese cuántos Kg desea: "))
                     limpiar_pantalla()
-                    if cant>0:
-                        print(f"{cant} 'Frutilla' añadida(s) al carrito")
-                        multiplicacion = cant * 2500    
-                        carrito_de_compra += multiplicacion      
-                    else:
-                        print("La cantidad no es válida, no se agregó ningún producto")
-                        print("")
-                        a = input("Presione ENTER para continuar...")
-                        limpiar_pantalla()     
-                elif producto==4:
-                    limpiar_pantalla()
-                    
-                    print(">>> Ingrese 0 para volver a la seccion 'Verduras y Frutas' <<<\n")
+                    if cant > 0:
+                        total_producto = cant * 2500
+                        carrito_de_compra += total_producto
+                        productos_comprados.append((f"Frutilla (Kg)", cant, total_producto))
+                        print(f"{cant} Kg de 'Frutilla' añadidos al carrito")
+                elif producto == 4:
+                    print(">>> Ingrese 0 para volver a la sección 'Verduras y Frutas' <<<\n")
                     print("$ 6.000 x Kg")
-                    cant=int(input("Ingrese cuantos Kg desea..."))
+                    cant = int(input("Ingrese cuántos Kg desea: "))
                     limpiar_pantalla()
-                    if cant>0:
-                        print(f"{cant} 'Uva' añadida(s) al carrito")
-                        multiplicacion = cant * 6000 
-                        carrito_de_compra += multiplicacion      
-                    else:
-                        print("La cantidad no es válida, no se agregó ningún producto")
-                        print("")
-                        a = input("Presione ENTER para continuar...")
-                        limpiar_pantalla()
-                elif producto==5:
+                    if cant > 0:
+                        total_producto = cant * 6000
+                        carrito_de_compra += total_producto
+                        productos_comprados.append((f"Uva (Kg)", cant, total_producto))
+                        print(f"{cant} Kg de 'Uva' añadidos al carrito")
+                elif producto == 5:
                     break
                 else:
-                    print("Ingrese opcion valida")   
+                    print("Ingrese una opción válida")
+                    input("Presione ENTER para continuar...")
         elif seccion == 2:
             while True:
                 print(f"""*** SECCION DE LACTEOS *** \n
 Ingrese el numero de lo que desea agregar al carrito \n\n 
-1). Leche Entera Colun 1L
-2). Yogurt Batido Vainilla Soprole 165g
-3). Yogurt Batido Frutilla Soprole 165g
-4). Queso Gauda Soprole 15 Laminas
+1). Leche Entera Colun 1L - $1000 c/u
+2). Yogurt Batido Vainilla Soprole 165g - $490 c/u
+3). Yogurt Batido Frutilla Soprole 165g - $490 c/u
+4). Queso Gauda Soprole 15 Laminas - $2890 c/u
 5). Salir.
-                      \n                         Carrito de compra: $ {carrito_de_compra}""")
-                producto=int(input(""))
-                if producto==1:
+                            \n                         Carrito de compra: $ {carrito_de_compra}""")
+                producto = int(input(""))
+
+                if producto == 1:
                     limpiar_pantalla()
                     
                     print(">>> Ingrese 0 para volver a la seccion 'Lacteos' <<<\n")
                     print("$ 1.000 c/u")
-                    cant=int(input("Ingrese cuanta cantidad desea..."))
+                    cant = int(input("Ingrese cuanta cantidad desea..."))
                     limpiar_pantalla()
-                    if cant>0:
+                    if cant > 0:
+                        multiplicacion = cant * 1000
+                        carrito_de_compra += multiplicacion
+                        productos_comprados.append(("Leche Entera Colun 1L", cant, multiplicacion))
                         print(f"{cant} 'Leche Entera Colun 1L' ha sido añadido(s) al carrito")
                         print("")
-                        multiplicacion = cant * 1000
-                        carrito_de_compra += multiplicacion   
                     else:
                         print("La cantidad no es válida, no se agregó ningún producto")
                         print("")
                         a = input("Presione ENTER para continuar...")
-                elif producto==2:
+                elif producto == 2:
                     limpiar_pantalla()
                     
                     print(">>> Ingrese 0 para volver a la seccion 'Lacteos' <<<\n")
                     print("$ 490 c/u")
-                    cant=int(input("Ingrese cuanta cantidad desea..."))
+                    cant = int(input("Ingrese cuanta cantidad desea..."))
                     limpiar_pantalla()
-                    if cant>0:
-                        print(f"{cant} 'Yogurt Batido Vainilla 165g' añadido(s) al carrito")
-                        multiplicacion = cant * 490 
-                        carrito_de_compra += multiplicacion         
+                    if cant > 0:
+                        multiplicacion = cant * 490
+                        carrito_de_compra += multiplicacion
+                        productos_comprados.append(("Yogurt Batido Vainilla Soprole 165g", cant, multiplicacion))
+                        print(f"{cant} 'Yogurt Batido Vainilla Soprole 165g' añadido(s) al carrito")
                     else:
                         print("La cantidad no es válida, no se agregó ningún producto")
                         print("")
-                        a = input("Presione ENTER para continuar...")       
-                elif producto==3:
+                        a = input("Presione ENTER para continuar...")
+                elif producto == 3:
                     limpiar_pantalla()
                     
                     print(">>> Ingrese 0 para volver a la seccion 'Lacteos' <<<\n")
                     print("$ 490 c/u")
-                    cant=int(input("Ingrese cuanta cantidad desea..."))
+                    cant = int(input("Ingrese cuanta cantidad desea..."))
                     limpiar_pantalla()
-                    if cant>0:
-                        print("'Yogurt Batido Frutilla 165g' añadido(s) al carrito")
-                        multiplicacion = cant * 490    
-                        carrito_de_compra += multiplicacion      
+                    if cant > 0:
+                        multiplicacion = cant * 490
+                        carrito_de_compra += multiplicacion
+                        productos_comprados.append(("Yogurt Batido Frutilla Soprole 165g", cant, multiplicacion))
+                        print(f"{cant} 'Yogurt Batido Frutilla Soprole 165g' añadido(s) al carrito")
                     else:
                         print("La cantidad no es válida, no se agregó ningún producto")
                         print("")
                         a = input("Presione ENTER para continuar...")     
-                elif producto==4:
+                elif producto == 4:
                     limpiar_pantalla()
                     
                     print(">>> Ingrese 0 para volver a la seccion 'Lacteos' <<<\n")
-                    print("$ 2.890")
-                    cant=int(input("Ingrese cuanta cantidad desea..."))
+                    print("$ 2.890 c/u")
+                    cant = int(input("Ingrese cuanta cantidad desea..."))
                     limpiar_pantalla()
-                    if cant>0:
-                        print("'Queso Gauda Soprole 15 Laminas' añadido(s) al carrito")
-                        multiplicacion = cant * 2890 
-                        carrito_de_compra += multiplicacion      
+                    if cant > 0:
+                        multiplicacion = cant * 2890
+                        carrito_de_compra += multiplicacion
+                        productos_comprados.append(("Queso Gauda Soprole 15 Laminas", cant, multiplicacion))
+                        print(f"{cant} 'Queso Gauda Soprole 15 Laminas' añadido(s) al carrito")
                     else:
                         print("La cantidad no es válida, no se agregó ningún producto")
                         print("")
                         a = input("Presione ENTER para continuar...")
-                elif producto==5:
+                elif producto == 5:
                     break
                 else:
                     print("Ingrese opción válida...")
                     print("")
                     a = input("Presione ENTER para continuar...")
-                    limpiar_pantalla()  
+                    limpiar_pantalla()
+    
         elif seccion == 3:
             while True:
                 print(f"""*** SECCION DE BEBIDAS *** \n
 Ingrese el numero de lo que desea agregar al carrito \n
-1). Coca cola (2L)
-2). Sprite (2L)
-3). Monster (473ml)
-4). Red Bull (250ml)
+1). Coca Cola (2L) - $2.000 c/u
+2). Sprite (2L) - $2.000 c/u
+3). Monster (473ml) - $1.800 c/u
+4). Red Bull (250ml) - $1.600 c/u
 5). Salir.
-                      \n                         Carrito de compra: $ {carrito_de_compra}""")
-                producto=int(input(""))
-                if producto==1:
+                            \n                         Carrito de compra: $ {carrito_de_compra}""")
+                producto = int(input(""))
+
+                if producto == 1:
                     limpiar_pantalla()
                     
                     print(">>> Ingrese 0 para volver a la seccion 'Bebidas' <<<\n")
                     print("$2.000 (c/u)")
-                    cant=int(input("Ingrese la cantidad que desea..."))
+                    cant = int(input("Ingrese la cantidad que desea..."))
                     limpiar_pantalla()
-                    if cant>0:
+                    if cant > 0:
+                        multiplicacion = cant * 2000
+                        carrito_de_compra += multiplicacion
+                        productos_comprados.append(("Coca Cola (2L)", cant, multiplicacion))
                         print(f"{cant} 'Coca Cola(s)' ha sido añadida(s) al carrito")
-                        multiplicacion = cant * 2000       
-                        carrito_de_compra += multiplicacion   
+                        print("")
                     else:
                         print("La cantidad no es válida, no se agregó ningún producto")
                         print("")
                         a = input("Presione ENTER para continuar...")
                         limpiar_pantalla()
-                elif producto==2:
+                elif producto == 2:
                     limpiar_pantalla()
                     
                     print(">>> Ingrese 0 para volver a la seccion 'Bebidas' <<<\n")
                     print("$2.000 (c/u)")
-                    cant=int(input("Ingrese la cantidad que desea..."))
+                    cant = int(input("Ingrese la cantidad que desea..."))
                     limpiar_pantalla()
-                    if cant>0:
+                    if cant > 0:
+                        multiplicacion = cant * 2000
+                        carrito_de_compra += multiplicacion
+                        productos_comprados.append(("Sprite (2L)", cant, multiplicacion))
                         print(f"{cant} 'Sprite(s)' añadido(s) al carrito")
                         print("")
-                        multiplicacion = cant * 2000 
-                        carrito_de_compra += multiplicacion         
-                    else:
-                        print("La cantidad no es válida, por lno se agregó ningún producto")
-                        print("")
-                        a = input("Presione ENTER para continuar...")       
-                elif producto==3:
-                    limpiar_pantalla()
-                    
-                    print(">>> Ingrese 0 para volver a la seccion 'Bebidas' <<<\n")
-                    print("$1.800")
-                    cant=int(input("Ingrese la cantidad que desea..."))
-                    limpiar_pantalla()
-                    if cant>0:
-                        print(f"{cant} 'Monster(s)' añadido(s) al carrito")
-                        multiplicacion = cant * 1800    
-                        carrito_de_compra += multiplicacion      
                     else:
                         print("La cantidad no es válida, no se agregó ningún producto")
                         print("")
                         a = input("Presione ENTER para continuar...")
-                        limpiar_pantalla()     
-                elif producto==4:
+                elif producto == 3:
                     limpiar_pantalla()
                     
                     print(">>> Ingrese 0 para volver a la seccion 'Bebidas' <<<\n")
-                    print("1 Kg $1.600")
-                    cant=int(input("Ingrese la cantidad que desea..."))
+                    print("$1.800 c/u")
+                    cant = int(input("Ingrese la cantidad que desea..."))
                     limpiar_pantalla()
-                    if cant>0:
-                        print(f"{cant} 'Red Bull(s)' añadido(s) al carrito")
-                        multiplicacion = cant * 1600 
-                        carrito_de_compra += multiplicacion      
+                    if cant > 0:
+                        multiplicacion = cant * 1800
+                        carrito_de_compra += multiplicacion
+                        productos_comprados.append(("Monster (473ml)", cant, multiplicacion))
+                        print(f"{cant} 'Monster(s)' añadido(s) al carrito")
                     else:
                         print("La cantidad no es válida, no se agregó ningún producto")
                         print("")
                         a = input("Presione ENTER para continuar...")
                         limpiar_pantalla()
-                elif producto==5:
+                elif producto == 4:
+                    limpiar_pantalla()
+                    
+                    print(">>> Ingrese 0 para volver a la seccion 'Bebidas' <<<\n")
+                    print("$1.600 c/u")
+                    cant = int(input("Ingrese la cantidad que desea..."))
+                    limpiar_pantalla()
+                    if cant > 0:
+                        multiplicacion = cant * 1600
+                        carrito_de_compra += multiplicacion
+                        productos_comprados.append(("Red Bull (250ml)", cant, multiplicacion))
+                        print(f"{cant} 'Red Bull(s)' añadido(s) al carrito")
+                    else:
+                        print("La cantidad no es válida, no se agregó ningún producto")
+                        print("")
+                        a = input("Presione ENTER para continuar...")
+                        limpiar_pantalla()
+                elif producto == 5:
                     break
                 else:
-                    print("Ingrese opcion valida")   
+                    print("Ingrese opción válida")
+                    print("")
+                    a = input("Presione ENTER para continuar...")
+                    limpiar_pantalla()
+  
         elif seccion == 4:
             while True:
                 print(f"""*** SECCION DE HIGIENE PERSONAL *** \n
-Ingrese el numero de lo que desea agregar al carrito \n
-1). Toallas femeninas 'care up' 8 unidades
-2). Paquete Confort 4 unidades
-3). toallas humedas 'huggies' 48 unidades
-4). Desodorante spray nivea man 150ml
+Ingrese el número de lo que desea agregar al carrito \n
+1). Toallas femeninas 'Care Up' (8 unidades) - $1.000 c/u
+2). Paquete Confort (4 unidades) - $1.000 c/u
+3). Toallas húmedas 'Huggies' (48 unidades) - $1.500 c/u
+4). Desodorante spray Nivea Man (150ml) - $2.000 c/u
 5). Salir.
                     \n                         Carrito de compra: ${carrito_de_compra}""")
-                producto=int(input(""))
-                if producto==1:
+                producto = int(input(""))
+
+                if producto == 1:
                     limpiar_pantalla()
-                    
-                    print(">>> Ingrese 0 para volver a la seccion 'Higiene Personal' <<<\n")
+
+                    print(">>> Ingrese 0 para volver a la sección 'Higiene Personal' <<<\n")
                     print("$1.000 (c/u)")
-                    cant=int(input("Ingrese la cantidad que desea..."))
+                    cant = int(input("Ingrese la cantidad que desea..."))
                     limpiar_pantalla()
-                    if cant>0:
-                        print(f"{cant} 'toallas femeninas' han sido añadidas al carrito")
-                        multiplicacion = cant * 1000       
-                        carrito_de_compra += multiplicacion   
+                    if cant > 0:
+                        multiplicacion = cant * 1000
+                        carrito_de_compra += multiplicacion
+                        productos_comprados.append(("Toallas femeninas 'Care Up' (8 unidades)", cant, multiplicacion))
+                        print(f"{cant} 'Toallas femeninas' han sido añadidas al carrito")
+                        print("")
                     else:
                         print("La cantidad no es válida, no se agregó ningún producto")
                         print("")
                         a = input("Presione ENTER para continuar...")
                         limpiar_pantalla()
-                elif producto==2:
+
+                elif producto == 2:
                     limpiar_pantalla()
-                    
-                    print(">>> Ingrese 0 para volver a la seccion 'Higiene ´personal' <<<\n")
+
+                    print(">>> Ingrese 0 para volver a la sección 'Higiene Personal' <<<\n")
                     print("$1.000 (c/u)")
-                    cant=int(input("Ingrese la cantidad que desea..."))
+                    cant = int(input("Ingrese la cantidad que desea..."))
                     limpiar_pantalla()
-                    if cant>0:
-                        print(f"{cant} Confort(s) añadido(s) al carrito")
+                    if cant > 0:
+                        multiplicacion = cant * 1000
+                        carrito_de_compra += multiplicacion
+                        productos_comprados.append(("Paquete Confort (4 unidades)", cant, multiplicacion))
+                        print(f"{cant} Paquete(s) Confort añadido(s) al carrito")
                         print("")
-                        multiplicacion = cant * 1000 
-                        carrito_de_compra += multiplicacion         
                     else:
-                        print("La cantidad no es válida, por lno se agregó ningún producto")
+                        print("La cantidad no es válida, no se agregó ningún producto")
                         print("")
-                        a = input("Presione ENTER para continuar...")       
-                elif producto==3:
+                        a = input("Presione ENTER para continuar...")
+
+                elif producto == 3:
                     limpiar_pantalla()
-                    
-                    print(">>> Ingrese 0 para volver a la seccion 'Higiene ´personal' <<<\n")
+
+                    print(">>> Ingrese 0 para volver a la sección 'Higiene Personal' <<<\n")
                     print("$1.500 (c/u)")
-                    cant=int(input("Ingrese la cantidad que desea..."))
+                    cant = int(input("Ingrese la cantidad que desea..."))
                     limpiar_pantalla()
-                    if cant>0:
-                        print(f"{cant} toallas humedas añadidas al carrito")
-                        multiplicacion = cant * 1500    
-                        carrito_de_compra += multiplicacion      
-                    else:
-                        print("La cantidad no es válida, no se agregó ningún producto")
-                        print("")
-                        a = input("Presione ENTER para continuar...")
-                        limpiar_pantalla()     
-                elif producto==4:
-                    limpiar_pantalla()
-                    
-                    print(">>> Ingrese 0 para volver a la seccion 'Higiene ´personal' <<<\n")
-                    print("$2.000 (c/u)")
-                    cant=int(input("Ingrese la cantidad que desea..."))
-                    limpiar_pantalla()
-                    if cant>0:
-                        print(f" {cant} Desodorante(s) nivea man 150ml añadido(s) al carrito")
-                        multiplicacion = cant * 2000
-                        carrito_de_compra += multiplicacion      
+                    if cant > 0:
+                        multiplicacion = cant * 1500
+                        carrito_de_compra += multiplicacion
+                        productos_comprados.append(("Toallas húmedas 'Huggies' (48 unidades)", cant, multiplicacion))
+                        print(f"{cant} Toallas húmedas añadidas al carrito")
                     else:
                         print("La cantidad no es válida, no se agregó ningún producto")
                         print("")
                         a = input("Presione ENTER para continuar...")
                         limpiar_pantalla()
-                elif producto==5:
+
+                elif producto == 4:
+                    limpiar_pantalla()
+
+                    print(">>> Ingrese 0 para volver a la sección 'Higiene Personal' <<<\n")
+                    print("$2.000 (c/u)")
+                    cant = int(input("Ingrese la cantidad que desea..."))
+                    limpiar_pantalla()
+                    if cant > 0:
+                        multiplicacion = cant * 2000
+                        carrito_de_compra += multiplicacion
+                        productos_comprados.append(("Desodorante spray Nivea Man (150ml)", cant, multiplicacion))
+                        print(f"{cant} Desodorante(s) Nivea Man (150ml) añadido(s) al carrito")
+                    else:
+                        print("La cantidad no es válida, no se agregó ningún producto")
+                        print("")
+                        a = input("Presione ENTER para continuar...")
+                        limpiar_pantalla()
+
+                elif producto == 5:
                     break
+
                 else:
-                    print("Ingrese opcion valida")   
+                    print("Ingrese opción válida")
+                    print("")
+                    a = input("Presione ENTER para continuar...")
+                    limpiar_pantalla()
+        
         elif seccion==5:
             break
     total_pagar = carrito_de_compra
-    return total_pagar
+    return total_pagar, productos_comprados
 
-#datos:
+# Datos:
 
 limpiar_pantalla()
 client_name=input("Ingrese nombre del cliente: ") 
 limpiar_pantalla()
 client_lastname=input("Ingrese apellido del cliente: ")
 limpiar_pantalla()
-pago=val_pago()
-total_pagar=ciclo_menu()
+total_pagar , productos_comprados=ciclo_menu()
 limpiar_pantalla()
 print("")
 
-#mostrar datos
+# Mostrar Datos
 
 nombre_completo_cliente = calcular_nombre_completo(client_name, client_lastname)
 print("*** Información del Cliente ***")
 print("")
 print(f"Nombre del cliente: {nombre_completo_cliente}")
-print(f"Total a pagar: {total_pagar}")
+print(f"Total a pagar: $ {total_pagar}")
+print("\n*** Detalle de productos comprados ***\n")
+for producto, cantidad, precio in productos_comprados:
+    print(f"- {producto}: {cantidad} Unidad(es) - Total: $ {precio}\n")
