@@ -1,4 +1,4 @@
-# Programa de Pedidos para un supermercado
+# Programa de Delivery para un supermercado
     
 def limpiar_pantalla():
     from os import system
@@ -365,23 +365,55 @@ Ingrese el número de lo que desea agregar al carrito \n
     total_pagar = carrito_de_compra
     return total_pagar, productos_comprados
 
+
+usuarios=[]
+while True:
+    print("""Elija una opción\n\n
+1 >>> Registrarse \n
+2 >>> Iniciar Sesión\n
+3 >>> Salir\n\n""")
+    inicio = int(input(""))
+    if inicio==1:
+        print("*** REGISTRO DE USUARIO ***\n\n")
+        nombre = input("Cree el nombre de usuario...\n").lower()
+        contraseña=input("Cree su contraseña...\n")
+        confirmar_contraseña =input("Confirme su contraseña...\n")
+        if contraseña==confirmar_contraseña:
+            usuarios.append((nombre, contraseña))
+        else:
+            print("No coinciden las contraseñas\n")
+            a = input("Presione ENTER para continuar...")
+            limpiar_pantalla()
+    elif inicio==2:
+        print("*** INICIO DE SESION ***\n\n")
+        nombre = input("Ingrese nombre de usuario\n")
+        if any(user[0] == nombre for user in usuarios):
+            contraseña=input("Ingrese su contraseña\n ")
+            if any(user[0] == nombre and user[1] == contraseña for user in usuarios):
+                print("Inicio de sesión exitoso")
+                a = input("Presione ENTER para continuar...")
+                limpiar_pantalla()
+                total_pagar , productos_comprados=ciclo_menu()
+                
+        else:
+            print("Usuario no válido")
+    elif inicio==3:
+        break
+
+
 # Datos:
 
-limpiar_pantalla()
-client_name=input("Ingrese nombre del cliente: ") 
-limpiar_pantalla()
-client_lastname=input("Ingrese apellido del cliente: ")
-limpiar_pantalla()
+nombres = []
+
 total_pagar , productos_comprados=ciclo_menu()
 limpiar_pantalla()
 print("")
 
 # Mostrar Datos
 
-nombre_completo_cliente = calcular_nombre_completo(client_name, client_lastname)
 print("*** Información del Cliente ***")
 print("")
-print(f"Nombre del cliente: {nombre_completo_cliente}")
+print(f"Nombre del cliente: ")
 print(f"Total a pagar: $ {total_pagar}")
 print("\n*** Detalle de productos comprados ***\n")
 for producto, cantidad, precio in productos_comprados:
