@@ -210,7 +210,7 @@ Ingrese el numero de lo que desea agregar al carrito \n
                     
                     print(">>> Ingrese 0 para volver a la seccion 'Bebidas' <<<\n")
                     print("$2.000 (c/u)")
-                    cant = int(input("Ingrese la cantidad que desea..."))
+                    cant = int(input("Ingrese la cantidad que desea... "))
                     limpiar_pantalla()
                     if cant > 0:
                         multiplicacion = cant * 2000
@@ -230,7 +230,7 @@ Ingrese el numero de lo que desea agregar al carrito \n
                     
                     print(">>> Ingrese 0 para volver a la seccion 'Bebidas' <<<\n")
                     print("$2.000 (c/u)")
-                    cant = int(input("Ingrese la cantidad que desea..."))
+                    cant = int(input("Ingrese la cantidad que desea... "))
                     limpiar_pantalla()
                     if cant > 0:
                         multiplicacion = cant * 2000
@@ -249,7 +249,7 @@ Ingrese el numero de lo que desea agregar al carrito \n
                     
                     print(">>> Ingrese 0 para volver a la seccion 'Bebidas' <<<\n")
                     print("$1.800 c/u")
-                    cant = int(input("Ingrese la cantidad que desea..."))
+                    cant = int(input("Ingrese la cantidad que desea... "))
                     limpiar_pantalla()
                     if cant > 0:
                         multiplicacion = cant * 1800
@@ -268,7 +268,7 @@ Ingrese el numero de lo que desea agregar al carrito \n
                     
                     print(">>> Ingrese 0 para volver a la seccion 'Bebidas' <<<\n")
                     print("$1.600 c/u")
-                    cant = int(input("Ingrese la cantidad que desea..."))
+                    cant = int(input("Ingrese la cantidad que desea... "))
                     limpiar_pantalla()
                     if cant > 0:
                         multiplicacion = cant * 1600
@@ -307,7 +307,7 @@ Ingrese el número de lo que desea agregar al carrito \n
 
                     print(">>> Ingrese 0 para volver a la sección 'Higiene Personal' <<<\n")
                     print("$1.000 (c/u)")
-                    cant = int(input("Ingrese la cantidad que desea..."))
+                    cant = int(input("Ingrese la cantidad que desea... "))
                     limpiar_pantalla()
                     if cant > 0:
                         multiplicacion = cant * 1000
@@ -327,7 +327,7 @@ Ingrese el número de lo que desea agregar al carrito \n
 
                     print(">>> Ingrese 0 para volver a la sección 'Higiene Personal' <<<\n")
                     print("$1.000 (c/u)")
-                    cant = int(input("Ingrese la cantidad que desea..."))
+                    cant = int(input("Ingrese la cantidad que desea... "))
                     limpiar_pantalla()
                     if cant > 0:
                         multiplicacion = cant * 1000
@@ -346,7 +346,7 @@ Ingrese el número de lo que desea agregar al carrito \n
 
                     print(">>> Ingrese 0 para volver a la sección 'Higiene Personal' <<<\n")
                     print("$1.500 (c/u)")
-                    cant = int(input("Ingrese la cantidad que desea..."))
+                    cant = int(input("Ingrese la cantidad que desea... "))
                     limpiar_pantalla()
                     if cant > 0:
                         multiplicacion = cant * 1500
@@ -366,7 +366,7 @@ Ingrese el número de lo que desea agregar al carrito \n
 
                     print(">>> Ingrese 0 para volver a la sección 'Higiene Personal' <<<\n")
                     print("$2.000 (c/u)")
-                    cant = int(input("Ingrese la cantidad que desea..."))
+                    cant = int(input("Ingrese la cantidad que desea... "))
                     limpiar_pantalla()
                     if cant > 0:
                         multiplicacion = cant * 2000
@@ -409,7 +409,7 @@ while True:
     print("""Elija una opción\n\n
 1 >>> Registrarse \n
 2 >>> Iniciar Sesión\n
-3 >>> Salir\n\n""")
+0 >>> Salir\n\n""")
     inicio = int(input(""))
     limpiar_pantalla()
     if inicio==1:
@@ -440,6 +440,6 @@ while True:
                 
         else:
             print("Usuario no válido")
-    elif inicio==3:
+    elif inicio==0:
         break
 
