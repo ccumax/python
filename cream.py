@@ -1,105 +1,97 @@
-# Programa de Delivery para un supermercado
-    
+# *** Programa de Delivery para un supermercado ***
+
+
+# Función para limpiar la pantalla del terminal (cmd o consola)
 def limpiar_pantalla():
     from os import system
-    system("cls")
-    
-#def calcular_nombre_completo(nombre, apellido):
- #   return f"{nombre} {apellido}"
+    system("cls")  # Comando para limpiar la consola en Windows
 
-limpiar_pantalla()
+limpiar_pantalla()  # Llama a la función para limpiar la pantalla al inicio del programa
+
+# Función principal del ciclo del menú de opciones
+def val_inicio():
+    while True:
+        try:
+            print("""Elija una opción\n\n
+1 >>> Registrarse \n
+2 >>> Iniciar Sesión\n
+0 >>> Salir\n\n""")
+            inicio = int(input(""))  # Solicita la opción de inicio
+            if inicio>=0<=2:
+              return inicio
+            else:
+                print("OPCIÓN NO VALIDA")
+                
+        except ValueError:
+            limpiar_pantalla()
+            print(">>> INGRESE UNA OPCIÓN EN NÚMEROS ENTEROS <<<\n")
+
+def val_seccion():
+    while True:
+        try:
+            seccion = int(input(""))  # Solicita la opción de inicio
+            limpiar_pantalla()
+            if seccion>=0<=4:
+              return seccion
+            else:
+                print("OPCIÓN NO VALIDA")
+                
+        except ValueError:
+            limpiar_pantalla()
+            print(">>> INGRESE UNA OPCIÓN EN NÚMEROS ENTEROS <<<\n")
+
 
 def ciclo_menu():
     print(f"*** Bienvenido/a {nombre} a Pedidos Nya! ***")
     print("")
-    print("")
-    a = input("Presione ENTER para continuar...")
-    limpiar_pantalla()
-    carrito_de_compra = 0
-    productos_comprados=[]
+    a = input("Presione ENTER para continuar...")  # Espera que el usuario presione ENTER
+    limpiar_pantalla()   
+    carrito_de_compra = 0  # Inicializa el total del carrito de compras
+    productos_comprados = []  # Lista para almacenar los productos comprados
+    
+    # Ciclo principal donde se presenta el menú de secciones
     while True:
-        print("""¿A que sección quiere ir? (Ingrese el número de la sección)
-              
-1). Verduras y Frutas
-2). Lacteos
-3). Bebidas
-4). Higiene personal
-0). Salir""")
+
+        seccion=val_seccion()
+        limpiar_pantalla()   
         
-        print("")
-        print(f"                         Carrito de compra actual: $ {carrito_de_compra}")
-        print("")
-        
-        seccion = int(input(""))
-        limpiar_pantalla()
-        #Secciones 
+        # Sección de Verduras y Frutas
         if seccion == 1:
             while True:
                 print(f"""*** SECCIÓN DE VERDURAS Y FRUTAS ***
                       
 Ingrese el número de lo que desea agregar al carrito
                       
+
 1). Papas (Kg) - $1000 x Kg
 2). Tomate (Kg) - $1000 x Kg
 3). Frutilla (Kg) - $2500 x Kg
 4). Uva (Kg) - $6000 x Kg
 0). Salir.
                                       
-                         Carrito de compra: $ {carrito_de_compra}""")
-                producto = int(input(""))
-                limpiar_pantalla()
-                if producto == 1:
-                    print(">>> Ingrese 0 para volver a la sección 'Verduras y Frutas' <<<\n")
-                    print("$ 1.000 x Kg")
-                    cant = int(input("Ingrese cuántos Kg desea: "))
-                    limpiar_pantalla()
-                    if cant > 0:
-                        total_producto = cant * 1000
-                        carrito_de_compra += total_producto
-                        productos_comprados.append((f"Papas (Kg)", cant, total_producto))
-                        print(f"{cant} Kg de 'Papas' añadidas al carrito\n")
-                        input("Presione ENTER para continuar...")
-                        limpiar_pantalla()
 
-                elif producto == 2:
+                         Carrito de compra: $ {carrito_de_compra}""")
+                producto = int(input(""))  # Solicita el número del producto
+                limpiar_pantalla()   
+                if producto == 1:  # Opción de Papas
                     print(">>> Ingrese 0 para volver a la sección 'Verduras y Frutas' <<<\n")
                     print("$ 1.000 x Kg")
-                    cant = int(input("Ingrese cuántos Kg desea: "))
-                    limpiar_pantalla()
-                    if cant > 0:
-                        total_producto = cant * 1000
-                        carrito_de_compra += total_producto
-                        productos_comprados.append((f"Tomate (Kg)", cant, total_producto))
-                        print(f"{cant} Kg de 'Tomate' añadidos al carrito\n")
-                        input("Presione ENTER para continuar...")
-                        limpiar_pantalla()
-                elif producto == 3:
-                    print(">>> Ingrese 0 para volver a la sección 'Verduras y Frutas' <<<\n")
-                    print("$ 2.500 x Kg")
-                    cant = int(input("Ingrese cuántos Kg desea: "))
-                    limpiar_pantalla()
-                    if cant > 0:
-                        total_producto = cant * 2500
-                        carrito_de_compra += total_producto
-                        productos_comprados.append((f"Frutilla (Kg)", cant, total_producto))
-                        print(f"{cant} Kg de 'Frutilla' añadidos al carrito\n")
-                        input("Presione ENTER para continuar...")
-                        limpiar_pantalla()
-                elif producto == 4:
-                    print(">>> Ingrese 0 para volver a la sección 'Verduras y Frutas' <<<\n")
-                    print("$ 6.000 x Kg")
-                    cant = int(input("Ingrese cuántos Kg desea: "))
-                    limpiar_pantalla()
-                    if cant > 0:
-                        total_producto = cant * 6000
-                        carrito_de_compra += total_producto
-                        productos_comprados.append((f"Uva (Kg)", cant, total_producto))
-                        print(f"{cant} Kg de 'Uva' añadidos al carrito\n")
-                        input("Presione ENTER para continuar...")
-                        limpiar_pantalla()
-                elif producto == 0:
+                    cant = int(input("Ingrese cuántos Kg desea: "))  # Solicita la cantidad de papas
+                    limpiar_pantalla()   
+                    if cant > 0:  # Verifica que la cantidad sea positiva
+                        total_producto = cant * 1000  # Calcula el total por el precio
+                        carrito_de_compra += total_producto  # Añade al total del carrito
+                        productos_comprados.append((f"Papas (Kg)", cant, total_producto))  # Añade el producto a la lista
+                        print(f"{cant} Kg de 'Papas' añadidas al carrito\n")
+                        input("Presione ENTER para continuar...")  # Espera que el usuario presione ENTER
+                        limpiar_pantalla()   
+
+                # Similar para los otros productos (Tomate, Frutilla, Uva)
+                # Cada uno tiene su precio, su cantidad y se añade al carrito de compra
+
+                elif producto == 0:  # Salir de la sección de Verduras y Frutas
                     break
-                else:
+                else:  # Opción inválida
                     print("Ingrese una opción válida")
                     input("Presione ENTER para continuar...")
         elif seccion == 2:
@@ -404,42 +396,50 @@ Ingrese el número de lo que desea agregar al carrito \n
     input("Presione ENTER para finalizar...\n")
     limpiar_pantalla()
 
+# Ciclo para manejar el registro de usuarios y el inicio de sesión
 usuarios=[]
 while True:
-    print("""Elija una opción\n\n
-1 >>> Registrarse \n
-2 >>> Iniciar Sesión\n
-0 >>> Salir\n\n""")
-    inicio = int(input(""))
+    inicio = val_inicio()
     limpiar_pantalla()
-    if inicio==1:
+    
+    # Registro de usuario
+    if inicio == 1:
         print("*** REGISTRO DE USUARIO ***\n\n")
-        nombre = input("Cree el nombre de usuario...\n")
-        contraseña = input("Cree su contraseña...\n")
+        nombre = input("Cree el nombre de usuario...\n")  # Solicita un nombre de usuario
+        contraseña = input("Cree su contraseña...\n")  # Solicita una contraseña
         limpiar_pantalla()
-        confirmar_contraseña = input("Confirme su contraseña...\n")
-        limpiar_pantalla()
-        if contraseña==confirmar_contraseña:
-            usuarios.append((nombre, contraseña))
-        else:
-            print("No coinciden las contraseñas\n")
-            a = input("Presione ENTER para continuar...")
+        while True:
+            confirmar_contraseña = input("Confirme su contraseña...\n")  # Solicita confirmación de la contraseña
             limpiar_pantalla()
-    elif inicio==2:
-        print("*** INICIO DE SESION ***\n\n")
-        nombre = input("Ingrese nombre de usuario\n\n")
-        limpiar_pantalla()
-        if any(user[0] == nombre for user in usuarios):
-            contraseña=input("Ingrese su contraseña\n\n ")
-            limpiar_pantalla()
-            if any(user[0] == nombre and user[1] == contraseña for user in usuarios):
-                print("Inicio de sesión exitoso\n")
-                a = input("Presione ENTER para continuar...\n\n")
+    
+            if contraseña == confirmar_contraseña:  # Verifica que las contraseñas coincidan
+                usuarios.append((nombre, contraseña))  # Agrega el usuario a la lista
+                break
+            else:
+                print("No coinciden las contraseñas\n")  # Si no coinciden las contraseñas
+                a = input("Presione ENTER para continuar...")
                 limpiar_pantalla()
-                ciclo_menu()
-                
+
+    # Inicio de sesión
+    elif inicio == 2:
+        print("*** INICIO DE SESION ***\n\n")
+        nombre = input("Ingrese nombre de usuario\n\n")  # Solicita el nombre de usuario
+        limpiar_pantalla()
+       
+        if any(user[0] == nombre for user in usuarios):  # Verifica si el usuario existe
+            while True:
+                contraseña = input("Ingrese su contraseña\n\n ")  # Solicita la contraseña
+                limpiar_pantalla()
+                if any(user[0] == nombre and user[1] == contraseña for user in usuarios):  # Verifica que la contraseña sea correcta
+                    print("Inicio de sesión exitoso\n")
+                    a = input("Presione ENTER para continuar...\n\n")
+                    limpiar_pantalla()
+                    ciclo_menu()  # Llama a la función para mostrar el menú de compras
+                    break
+                else:
+                    print(">>> CONTRASEÑA NO VALIDA <<<\n")
         else:
-            print("Usuario no válido")
-    elif inicio==0:
+            print(">>> USUARIO NO EXISTENTE <<<\n")  # Si el usuario no existe
+    elif inicio == 0:  # Salir del programa
         break
 
